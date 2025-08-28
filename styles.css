@@ -1,0 +1,209 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+:root{
+  --pcolor: darkslategrey;
+  --scolor: darkmagenta;
+  --fcolor: #fff3ff;
+}
+
+.web{
+  color: black;
+}
+
+.container{
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--pcolor);
+  display: flex;
+  flex-direction: column;
+}
+
+header{
+  padding: 20px 10px;
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+}
+
+.topleft{
+  width: 80%;
+  max-width: 40%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.topleft select, .topleft button{
+  background-color: var(--scolor);
+  padding: 6px 4px;
+  border-radius: 8px;
+  border: 1.5px solid var(--fcolor);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.topleft button:active{
+  transform: scale(0.9);
+}
+
+.hud{
+  width: 100%;
+  padding: 12.5px 8.5px;
+  color: var(--fcolor);
+  background-color: var(--scolor);
+  box-shadow: 0px 0px 1px 2px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.grid{
+  width: 100%;
+  min-height: 450px;
+  padding-top: 10px;
+  display: grid;
+  gap:10px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card{
+  width: 100px;
+  height: 130px;
+  border-radius: 5px;
+  perspective: 1000px;
+}
+
+.card-inner{
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card.is-flipped .card-inner{
+  transform: rotateY(180deg);
+}
+
+.face{
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.front{
+  background-color: var(--scolor);
+}
+
+.back{
+  background-color: var(--fcolor);
+  font-size: 30px;
+  transform: rotateY(180deg);
+}
+
+#modal{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal[hidden]{
+  display: none !important;
+}
+
+.modal-card{
+  width: 95%;
+  max-width: 480px;
+  height: 250px;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: var(--scolor);
+  box-shadow: 0 0 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-card button{
+  padding: 8px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.modal-card button:active{
+  transform: scale(0.9);
+}
+
+@media only screen and (max-width: 700px){
+  .grid{
+    grid-template-columns: repeat(3, 0fr) !important;
+  }
+}
+
+@media only screen and (max-width: 650px){
+  header{
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  header h2{
+    width: 100%;
+    text-align: center;
+  }
+
+  .topleft{
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .topleft select, .topleft button{
+    padding: 8px 6px;
+    border-radius: 8px;
+  }
+
+}
+
+@media only screen and (max-width: 480px){
+  .card{
+    width: 80px;
+    height: 100px;
+    border-radius: 5px;
+  }
+
+  .back{
+    font-size: 25px;
+  }
+}
+
+@media only screen and (max-width: 380px){
+  .card{
+    width: 65px;
+    height: 85px;
+    border-radius: 5px;
+  }
+
+  .back{
+    font-size: 20px;
+  }
+}

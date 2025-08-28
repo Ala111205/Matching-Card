@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory card Game</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css"/>
+</head>
+<body>
+  <div class="web">
+    <div class="container">
+      <header>
+        <h1>Matching Game</h1>
+        <div class="topleft">
+          <select name="selection" id="difficulty">
+            <option value="4">Easy 4×4</option>
+            <option value="6">Hard 6×6</option>
+          </select>
+          <button id="newGameBtn">New Game</button>
+        </div>
+      </header>
+
+      <div class="hud">
+        <div>Moves: <span id="moves"></span></div>
+        <div>Time: <span id="time"></span></div>
+        <div>Score: <span id="score"></span></div>
+      </div>
+
+      <div id="grid" class="grid"></div>
+    </div>
+
+    <div id="modal" hidden>
+      <div class="modal-card">
+        <h2>🎉 Congratulation</h2>
+        <p id="modalMsg"></p>
+        <button id="playAgainBtn">Play Again</button>
+      </div>
+    </div>
+    <div>
+
+    </div>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>
