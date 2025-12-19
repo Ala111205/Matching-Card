@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
 :root{
   --pcolor: darkslategrey;
   --scolor: darkmagenta;
@@ -65,10 +70,17 @@ header{
   width: 100%;
   min-height: 450px;
   padding-top: 10px;
+  padding-right: 4px;
+  padding-left: 4px;
   display: grid;
   gap:10px;
   justify-content: space-around;
   align-items: center;
+}
+
+#grid.locked .card {
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .card{
@@ -76,6 +88,24 @@ header{
   height: 130px;
   border-radius: 5px;
   perspective: 1000px;
+  transition: all 0.5s;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:not(.matched):not(.disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card.is-flipped {
+  cursor: default;
+}
+
+.card.matched {
+  cursor: default;
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 .card-inner{
@@ -154,13 +184,7 @@ header{
   transform: scale(0.9);
 }
 
-@media only screen and (max-width: 700px){
-  .grid{
-    grid-template-columns: repeat(3, 0fr) !important;
-  }
-}
-
-@media only screen and (max-width: 650px){
+@media only screen and (max-width: 680px){
   header{
     flex-wrap: wrap;
     justify-content: center;
@@ -182,10 +206,31 @@ header{
     border-radius: 8px;
   }
 
+  #grid.grid-6 {
+    gap: clamp(9px, 0.5vw, 0px);
+  }
+
+  #grid.grid-6 .card {
+    width: 100%;
+    height: 78px;
+    aspect-ratio: 6 / 7;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  
 }
 
 @media only screen and (max-width: 480px){
-  .card{
+  #grid.grid-6 {
+    gap: clamp(4px, 0.5vw, 0px);
+  }
+
+  #grid.grid-6 .card {
+    aspect-ratio: 5 / 7;
+  }
+
+  #grid.grid-4 .card{
     width: 80px;
     height: 100px;
     border-radius: 5px;
@@ -197,7 +242,11 @@ header{
 }
 
 @media only screen and (max-width: 380px){
-  .card{
+  #grid.grid-6 .card {
+    aspect-ratio: 4 / 7;
+  }
+
+  #grid.grid-4 .card{
     width: 65px;
     height: 85px;
     border-radius: 5px;
